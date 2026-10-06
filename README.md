@@ -21,7 +21,7 @@ npm run build    # type-check + production build to dist/
 
 1. Push this repo to GitHub.
 2. vercel.com → **Add New → Project** → import the repo. Vercel detects the Vite preset (build `npm run build`, output `dist`), so just press Deploy.
-3. **Project → Settings → Domains**: add `lesenius.se` and `www.lesenius.se`. Set `www.lesenius.se` to **Redirect to `lesenius.se` (308)**.
+3. **Domains** (project sidebar) → **Add Existing** → `lesenius.se` with "Redirect apex domains to www" checked. `www.lesenius.se` is the primary domain; `lesenius.se` redirects to it.
 
 ## DNS at Inleed
 
@@ -44,7 +44,7 @@ Verify:
 ```bash
 nslookup lesenius.se
 nslookup www.lesenius.se
-curl -sI https://www.lesenius.se
+curl -sI https://lesenius.se
 ```
 
-`lesenius.se` should resolve to `76.76.21.21`, and `www` should 308-redirect to `https://lesenius.se/`.
+`lesenius.se` should resolve to `76.76.21.21`, and `https://lesenius.se` should redirect to `https://www.lesenius.se/`.
