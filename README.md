@@ -1,11 +1,11 @@
 # lesenius.se
 
-A one-page CV built with Vite, React, TypeScript, Tailwind CSS v4 and Motion, hosted on Vercel.
+A one-page CV built with Vite, React, TypeScript and Tailwind CSS v4, hosted on Vercel.
 
 ## Edit content
 
-All text lives in **[`src/data/cv.ts`](src/data/cv.ts)**: name, rotating roles, about, highlights, skills, experience, education and contact.
-- Photo: put `viktor.jpg` in `public/` and set `photo: '/viktor.jpg'`.
+All text lives in **[`src/data/cv.ts`](src/data/cv.ts)**: name, intro, about, key facts, expertise, projects, experience, education, certifications and contact.
+- Photo: put `rebecca.jpg` in `public/` and set `photo: '/rebecca.jpg'`.
 - CV PDF: put `cv.pdf` in `public/` and set `contact.cvPdf: '/cv.pdf'` (a download button appears).
 - Social image: add `public/og-image.png` (1200×630).
 

@@ -1,19 +1,30 @@
-import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 
-type Props = { children: ReactNode; delay?: number; className?: string }
+type Props = { children: ReactNode; className?: string; delay?: number }
 
-/** Fades and slides children in when they scroll into view. */
-export function Reveal({ children, delay = 0, className }: Props) {
+/** Fades children in gently the first time they scroll into view. */
+export function Reveal({ children, className = '', delay = 0 }: Props) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '0px 0px -60px 0px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <div ref={ref} className={`reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>
       {children}
-    </motion.div>
+    </div>
   )
 }

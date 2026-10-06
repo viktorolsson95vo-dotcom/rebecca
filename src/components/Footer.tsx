@@ -1,16 +1,22 @@
 import { cv } from '../data/cv'
 
 export function Footer() {
+  const year = new Date().getFullYear()
+  const initials = cv.name
+    .split(' ')
+    .map((w) => w[0])
+    .join('')
+
   return (
-    <footer className="no-print border-t-[3px] border-ink px-4 py-8 sm:px-8">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 text-sm font-semibold">
+    <footer className="border-t border-line px-5 py-8 sm:px-8">
+      {/* Styled like the title block of a drawing */}
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 font-mono text-xs uppercase tracking-wider text-muted">
         <p>
-          © {new Date().getFullYear()} {cv.firstName} {cv.lastName}
+          © {year} {cv.name}
         </p>
-        <p className="text-muted">Made with too much coffee in {cv.location.split(',')[0]} ☕</p>
-        <a href="#top" className="rounded-full border-[3px] border-ink px-4 py-1.5 hover:bg-lime hover:text-black">
-          Back to top ↑
-        </a>
+        <p>
+          Drawn by {initials} · Rev. {year} · Scale 1:1
+        </p>
       </div>
     </footer>
   )
