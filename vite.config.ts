@@ -5,14 +5,17 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 // Two pages: Swedish (primary) at /, English at /en. Language comes from <html lang> in each.
-export default defineConfig({
+// `vite build --ssr src/entry-server.tsx` builds the renderer used by scripts/prerender.mjs.
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react(), tailwindcss()],
-  build: {
-    rollupOptions: {
-      input: {
-        sv: resolve(import.meta.dirname, 'index.html'),
-        en: resolve(import.meta.dirname, 'en/index.html'),
+  build: isSsrBuild
+    ? {}
+    : {
+        rollupOptions: {
+          input: {
+            sv: resolve(import.meta.dirname, 'index.html'),
+            en: resolve(import.meta.dirname, 'en/index.html'),
+          },
+        },
       },
-    },
-  },
-})
+}))

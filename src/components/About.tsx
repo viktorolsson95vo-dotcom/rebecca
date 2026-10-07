@@ -25,14 +25,26 @@ export function About() {
                     <span key={pos} className={`absolute size-3 border-accent ${pos}`} aria-hidden />
                   ),
                 )}
-                <img
-                  src={cv.photo}
-                  alt={`${t.portraitOf} ${cv.name}`}
-                  width={640}
-                  height={800}
-                  loading="lazy"
-                  className="aspect-[4/5] w-full object-cover"
-                />
+                {/* AVIF/WebP at 320 and 640 px wide (rebecca-320.avif etc. in /public), JPEG fallback */}
+                <picture>
+                  {(['avif', 'webp'] as const).map((type) => (
+                    <source
+                      key={type}
+                      type={`image/${type}`}
+                      srcSet={[320, 640].map((w) => `${cv.photo!.replace(/\.jpg$/, '')}-${w}.${type} ${w}w`).join(', ')}
+                      sizes="(min-width: 1024px) 430px, (min-width: 640px) 384px, 320px"
+                    />
+                  ))}
+                  <img
+                    src={cv.photo}
+                    alt={`${t.portraitOf} ${cv.name}`}
+                    width={640}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/5] w-full object-cover"
+                  />
+                </picture>
               </div>
               <figcaption className="label mt-3 flex justify-between">
                 <span>Fig. 1</span>

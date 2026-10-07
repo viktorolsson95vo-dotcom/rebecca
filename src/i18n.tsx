@@ -6,6 +6,8 @@ const ui = {
   en: {
     skip: 'Skip to content',
     language: 'Language',
+    menu: 'Menu',
+    closeMenu: 'Close menu',
     nav: { about: 'About', expertise: 'Expertise', projects: 'Work', experience: 'Experience', contact: 'Contact' },
     getInTouch: 'Get in touch',
     viewWork: 'View my work',
@@ -27,6 +29,8 @@ const ui = {
   sv: {
     skip: 'Hoppa till innehållet',
     language: 'Språk',
+    menu: 'Meny',
+    closeMenu: 'Stäng menyn',
     nav: { about: 'Om mig', expertise: 'Kompetenser', projects: 'Arbete', experience: 'Erfarenhet', contact: 'Kontakt' },
     getInTouch: 'Kontakta mig',
     viewWork: 'Se mitt arbete',
@@ -54,10 +58,7 @@ type LangContext = { lang: Lang; cv: CV; t: (typeof ui)['en'] }
 
 const Ctx = createContext<LangContext | null>(null)
 
-// The page's <html lang> (set in index.html / en/index.html) decides the language.
-const lang: Lang = document.documentElement.lang === 'en' ? 'en' : 'sv'
-
-export function LangProvider({ children }: { children: ReactNode }) {
+export function LangProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
   return <Ctx.Provider value={{ lang, cv: content[lang], t: ui[lang] }}>{children}</Ctx.Provider>
 }
 

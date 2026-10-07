@@ -50,6 +50,10 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
+  /* Sections get programmatic focus after a menu jump (anchors.ts); no outline around the whole section */
+  [tabindex='-1']:focus {
+    outline: none;
+  }
   ::selection {
     background: var(--accent);
     color: var(--paper);
@@ -82,15 +86,15 @@
   }
 }
 
-/* Gentle fade-in on scroll (see Reveal.tsx) */
-.reveal {
+/* Gentle fade-in on scroll (see Reveal.tsx). Only with JS (html.js), so the pre-rendered page is readable without it */
+.js .reveal {
   opacity: 0;
   transform: translateY(12px);
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
 }
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -125,7 +129,7 @@
   html {
     scroll-behavior: auto;
   }
-  .reveal,
+  .js .reveal,
   .fade-late {
     opacity: 1;
     transform: none;
@@ -151,7 +155,7 @@
   .no-print {
     display: none !important;
   }
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }

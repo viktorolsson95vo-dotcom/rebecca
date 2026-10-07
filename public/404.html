@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Sidan finns inte – Rebecca Lesenius</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root { --paper: #f7f6f2; --ink: #1b1f24; --muted: #5b636b; --accent: #1f4e79; --grid: rgb(27 31 36 / 0.045); color-scheme: light; }
+      @media (prefers-color-scheme: dark) {
+        :root { --paper: #121417; --ink: #e8e6e1; --muted: #9aa1a8; --accent: #8fb4d9; --grid: rgb(232 230 225 / 0.04); color-scheme: dark; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px;
+        background: var(--paper) linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+          linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px;
+        color: var(--ink); font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      main { max-width: 32rem; }
+      p.code { font: 13px ui-monospace, Menlo, monospace; letter-spacing: 0.14em; color: var(--accent); margin: 0; }
+      h1 { font-weight: 500; font-size: clamp(2rem, 7vw, 3rem); line-height: 1.1; margin: 0.5rem 0 1rem; }
+      p { color: var(--muted); margin: 0 0 0.5rem; }
+      a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
+      nav { margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">FEL 404 · ERROR 404</p>
+      <h1>Sidan finns inte</h1>
+      <p>Länken kan vara felskriven eller sidan flyttad.</p>
+      <p lang="en">This page doesn’t exist. The link may be mistyped or the page moved.</p>
+      <nav>
+        <a href="/">Till startsidan</a>
+        <a href="/en" lang="en">Go to the English page</a>
+      </nav>
+    </main>
+  </body>
+</html>

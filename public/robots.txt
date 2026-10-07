@@ -1,0 +1,5 @@
+# Search engines and AI assistants are welcome to read and cite this CV.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lesenius.se/sitemap.xml

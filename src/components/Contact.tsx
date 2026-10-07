@@ -26,7 +26,7 @@ export function Contact() {
           </p>
           <a
             href={`mailto:${cv.contact.email}`}
-            className="mt-6 inline-block break-all text-3xl font-medium tracking-tight underline decoration-line decoration-1 underline-offset-[10px] transition-colors hover:decoration-accent sm:text-5xl"
+            className="mt-6 inline-block text-[clamp(1.25rem,6vw,3rem)] font-medium tracking-tight [overflow-wrap:anywhere] underline decoration-line decoration-1 underline-offset-[0.25em] transition-colors hover:decoration-accent"
           >
             {cv.contact.email}
           </a>
@@ -37,17 +37,17 @@ export function Contact() {
           </div>
         </div>
 
-        <ul className="space-y-3 md:text-right">
+        <ul className="space-y-1 md:text-right">
           {cv.contact.links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} target="_blank" rel="noreferrer" className="link">
+              <a href={l.href} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 items-center">
                 {l.label} ↗
               </a>
             </li>
           ))}
           {cv.contact.cvPdf && (
             <li>
-              <a href={cv.contact.cvPdf} download className="link">
+              <a href={cv.contact.cvPdf} download className="link inline-flex min-h-11 items-center">
                 {t.downloadCvPdf}
               </a>
             </li>

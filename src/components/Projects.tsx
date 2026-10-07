@@ -18,11 +18,11 @@ export function Projects() {
                 <h3 className="text-lg font-medium leading-snug">{p.name}</h3>
                 <p className="mt-3 text-muted">{p.summary}</p>
 
-                <dl className="mt-6 grid grid-cols-3 border-t border-line pt-4">
+                <dl className="mt-6 grid gap-2 border-t border-line pt-4 sm:grid-cols-3 sm:gap-4">
                   {p.specs.map((s) => (
-                    <div key={s.label}>
+                    <div key={s.label} className="flex items-baseline justify-between gap-4 sm:block">
                       <dt className="font-mono text-[0.68rem] uppercase tracking-wider text-muted">{s.label}</dt>
-                      <dd className="mt-1 font-medium text-accent">{s.value}</dd>
+                      <dd className="font-medium text-accent sm:mt-1">{s.value}</dd>
                     </div>
                   ))}
                 </dl>
