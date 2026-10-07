@@ -1,22 +1,23 @@
 // All site content lives here. Edit this file to update the CV — no component changes needed.
-// Everything below is PLACEHOLDER content.
+// Source: Rebecca's CV (translated from Swedish). Phone number and personal ID are deliberately left out.
 
 export type Fact = { label: string; value: string }
 
 export type ExpertiseGroup = { title: string; items: string[] }
 
-export type Project = {
+export type Work = {
   name: string
-  context: string // company / client / university
-  year: string
+  context: string // company / client
+  period: string
   summary: string
-  specs: Fact[] // short key results, shown as a spec table
+  specs: Fact[] // short key facts, shown as a spec table
   tools: string[]
 }
 
 export type Role = {
   title: string
   company: string
+  via?: string // consultancy the role was through
   period: string
   location?: string
   points: string[]
@@ -24,124 +25,174 @@ export type Role = {
 
 export type Education = { degree: string; school: string; period: string; note?: string }
 
+export type Engagement = { role: string; org: string; period: string }
+
 export type Link = { label: string; href: string }
 
 export const cv = {
   name: 'Rebecca Lesenius',
   title: 'Mechanical Engineer',
-  location: 'Stockholm, Sweden',
-  available: true,
+  location: 'Skåne, Sweden',
+  available: false,
   intro:
-    'Placeholder intro — one or two sentences on what Rebecca designs, the kind of products she works on, and what she cares about as an engineer.',
+    'Mechanical engineer with a background in product development and design. I take products from prototype to finished design, adapted to the needs of the people who use them.',
 
   about: [
-    'Placeholder bio. Describe the engineering problems Rebecca enjoys most — from concept and CAD to analysis, prototyping and handover to production.',
-    'Add a sentence on how she works with others: cross-functional teams, suppliers, test labs — and something personal to round it off.',
+    'Ambitious and driven, with a strong interest in technology and mechanical design. I know how a product goes from prototype to finished product, and how to adapt it to the user’s needs and wishes. My goal is to keep developing my interest in design and to use my knowledge of product development, CAD and mechanical engineering to help solve problems.',
+    'I’m a happy and curious person who doesn’t give up easily. I work well both independently and in a team, and can take the lead when needed. Combining design and engineering — finding solutions that work while keeping design in focus — is something I also do in my spare time, drawing and 3D-printing things for home. Outside work I do strength training and kickboxing, where I’m also a coach.',
   ],
   photo: null as string | null, // e.g. '/rebecca.jpg' — put the file in /public
 
   // Shown as a drawing-style "title block"
   facts: [
-    { label: 'Discipline', value: 'Mechanical design' },
-    { label: 'Experience', value: '6+ years' },
-    { label: 'Based in', value: 'Stockholm' },
+    { label: 'Discipline', value: 'Product development' },
+    { label: 'Engineering since', value: '2019' },
+    { label: 'Based in', value: 'Skåne, Sweden' },
     { label: 'Languages', value: 'Swedish, English' },
   ] satisfies Fact[],
 
   expertise: [
     {
       title: 'Design & CAD',
-      items: ['SolidWorks', 'CATIA V5', 'Siemens NX', 'GD&T / ISO GPS', 'Sheet metal design', 'Technical drawings'],
+      items: ['3D CAD — Creo, SolidWorks', 'Technical drawings', 'Sheet metal preparation', 'Customer-specific design', 'Visualisation'],
     },
     {
-      title: 'Analysis',
-      items: ['FEA (ANSYS)', 'Tolerance stack-up', 'Hand calculations', 'Fatigue & strength', 'MATLAB'],
+      title: 'Product development',
+      items: ['Product development', 'Prototyping', '3D printing (Creality Print)', 'Material selection', 'Testing'],
     },
     {
-      title: 'Manufacturing',
-      items: ['DFM / DFA', 'Injection moulding', 'CNC machining', 'Prototyping', 'Supplier collaboration'],
+      title: 'Manufacturing & quality',
+      items: ['DFM', 'DFA', 'Quality assurance', 'Windchill (PLM)', 'Welded design'],
     },
     {
-      title: 'Process & quality',
-      items: ['DFMEA', 'PLM (Teamcenter)', 'Design reviews', 'Test & verification', 'ISO 9001'],
+      title: 'Project management',
+      items: ['Project leadership', 'Project planning', 'Time estimation', 'Delegation & coordination', 'Microsoft Office'],
     },
   ] satisfies ExpertiseGroup[],
 
-  projects: [
+  work: [
     {
-      name: 'Lightweight bracket redesign',
-      context: 'Company One',
-      year: '2024',
-      summary: 'Placeholder — redesigned a load-bearing bracket using topology optimisation and FEA, validated by physical testing.',
+      name: 'Owner of a freezer model',
+      context: 'JBT Foodtech',
+      period: '2021 — 2026',
+      summary:
+        'Responsible for one of the freezer models: time estimates for upcoming orders, keeping all related models up to date, and acting as project lead for orders of this type.',
       specs: [
-        { label: 'Weight', value: '−32%' },
-        { label: 'Cost', value: '−18%' },
-        { label: 'Safety factor', value: '2.1' },
+        { label: 'Role', value: 'Model owner' },
+        { label: 'Also', value: 'Project lead' },
+        { label: 'CAD', value: 'Creo' },
       ],
-      tools: ['SolidWorks', 'ANSYS', 'Topology optimisation'],
+      tools: ['Creo', 'Windchill', 'Time estimation'],
     },
     {
-      name: 'Housing for handheld device',
-      context: 'Company One',
-      year: '2023',
-      summary: 'Placeholder — owned the mechanical design of an injection-moulded housing from concept to series production.',
+      name: 'Project lead for large orders',
+      context: 'JBT Foodtech',
+      period: '2021 — 2026',
+      summary:
+        'Led several larger orders where multiple engineers from the department worked together — delegating work evenly, keeping to the schedule and making sure the final assembly was correct.',
       specs: [
-        { label: 'IP rating', value: 'IP67' },
-        { label: 'Parts', value: '14 → 9' },
-        { label: 'Volume', value: '50k / yr' },
+        { label: 'Role', value: 'Project lead' },
+        { label: 'Team', value: 'Department' },
+        { label: 'Focus', value: 'Schedule' },
       ],
-      tools: ['CATIA V5', 'DFM', 'Tolerance analysis'],
+      tools: ['Project planning', 'Delegation', 'Assembly review'],
     },
     {
-      name: 'Test rig for fatigue testing',
-      context: 'Company Two',
-      year: '2021',
-      summary: 'Placeholder — designed and commissioned a test rig that cut verification lead time for a product line.',
+      name: 'Welded module & technical advisory',
+      context: 'JBT Foodtech',
+      period: '2021 — 2026',
+      summary:
+        'Responsible for a module involving welding and light programming. Improved it in close collaboration with manufacturers, reviewed work to keep a set standard, and acted as technical advisor to colleagues and manufacturers.',
       specs: [
-        { label: 'Lead time', value: '−40%' },
-        { label: 'Cycles', value: '10⁶' },
-        { label: 'Budget', value: 'On target' },
+        { label: 'Role', value: 'Module owner' },
+        { label: 'Works with', value: 'Suppliers' },
+        { label: 'Also', value: 'Advisor' },
       ],
-      tools: ['Siemens NX', 'MATLAB', 'Hand calcs'],
+      tools: ['Welding', 'Light programming', 'Design review'],
     },
-  ] satisfies Project[],
+    {
+      name: 'Signal horn development',
+      context: 'Kockumation',
+      period: '2019 — 2021',
+      summary:
+        'Assemblies and drawings for signal horns and related equipment. Developed the design and form of the product, tested it, chose materials and manufacturing methods, and used 3D-printed prototypes to test DFA and function.',
+      specs: [
+        { label: 'Focus', value: 'Design & form' },
+        { label: 'Method', value: 'DFA / DFM' },
+        { label: 'CAD', value: 'SolidWorks' },
+      ],
+      tools: ['SolidWorks', '3D printing', 'Material selection'],
+    },
+  ] satisfies Work[],
 
   experience: [
     {
-      title: 'Mechanical Design Engineer',
-      company: 'Company One',
-      period: '2022 — Present',
-      location: 'Stockholm',
+      title: 'Mechanical Engineer',
+      company: 'Tetra Pak',
+      via: 'Sigma Industry South',
+      period: '2026 — Present',
+      location: 'Lund',
+      points: [],
+    },
+    {
+      title: 'Mechanical Engineer',
+      company: 'JBT Foodtech',
+      via: 'Sigma Industry South',
+      period: '2021 — 2026',
+      location: 'Helsingborg',
       points: [
-        'Placeholder — responsible for mechanical design of X from concept to production.',
-        'Led DFMEA and design reviews with production and suppliers.',
-        'Mentored two junior engineers.',
+        'Customised models and their drawings in Creo, and checked that all models fit together and can be assembled.',
+        'Responsible for one of the freezer models — time estimates, keeping related models up to date, and project lead for those orders.',
+        'Project lead for several larger orders involving multiple engineers: delegating work, keeping to schedule and ensuring a correct assembly.',
+        'Responsible for a module involving welding and light programming; improved it together with manufacturers and acted as technical advisor.',
       ],
     },
     {
       title: 'Mechanical Engineer',
-      company: 'Company Two',
-      period: '2019 — 2022',
-      location: 'Gothenburg',
-      points: ['Placeholder — designed components and test equipment.', 'Ran FEA and verification testing.'],
-    },
-    {
-      title: 'Engineering Intern / Thesis',
-      company: 'Company Three',
-      period: '2018 — 2019',
-      points: ['Placeholder — master thesis on a relevant topic.'],
+      company: 'Kockumation',
+      via: 'Sigma Industry South',
+      period: '2019 — 2021',
+      location: 'Malmö',
+      points: [
+        'Assemblies and drawings for signal horns and related equipment in SolidWorks.',
+        'Development projects focused on the design and form of the product, including testing.',
+        'Produced manufacturing documentation, selected materials and manufacturing methods with a focus on DFA and DFM.',
+        'Used 3D printing to build prototypes for testing DFA and function.',
+      ],
     },
   ] satisfies Role[],
 
   education: [
-    { degree: 'MSc, Mechanical Engineering', school: 'KTH Royal Institute of Technology', period: '2014 — 2019', note: 'Specialisation: placeholder' },
+    {
+      degree: 'Project Management Programme',
+      school: 'Sigma Industry South',
+      period: '2025 — 2026',
+      note: 'Methods, tools and approaches for the project manager role, with theoretical and practical parts.',
+    },
+    {
+      degree: 'Vehicle Engineering',
+      school: 'Umeå University',
+      period: '2019',
+      note: 'A vehicle’s subsystems, construction and components.',
+    },
+    {
+      degree: 'BSc in Engineering, Product Development & Design',
+      school: 'Malmö University',
+      period: '2016 — 2019',
+      note: 'A mechanical engineering programme focused on product development.',
+    },
   ] satisfies Education[],
 
-  certifications: ['CSWP — Certified SolidWorks Professional', 'GD&T Fundamentals (ASME Y14.5)'],
+  engagements: [
+    { role: 'Board member & communications lead', org: 'Furulunds Kickboxningsklubb', period: '2022 — Present' },
+    { role: 'Board member / Vice chair', org: 'Sveriges Ingenjörer, Skåne district', period: '2016 — 2024' },
+  ] satisfies Engagement[],
+
+  languages: 'Swedish (native), English (fluent), French (basic)',
 
   contact: {
-    email: 'rebecca@lesenius.se',
-    links: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-handle' }] satisfies Link[],
-    cvPdf: null as string | null, // e.g. '/cv.pdf' — put the file in /public
+    email: 'rebeccalesenius@live.com',
+    links: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/rebecca-lesenius-profil/' }] satisfies Link[],
+    cvPdf: null as string | null, // e.g. '/cv.pdf' — put the file in /public (remove phone & personal ID first)
   },
 }

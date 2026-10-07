@@ -4,7 +4,7 @@ import { cv } from '../data/cv'
 const links = [
   { id: 'about', label: 'About' },
   { id: 'expertise', label: 'Expertise' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'Work' },
   { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ]

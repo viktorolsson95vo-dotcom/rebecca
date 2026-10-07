@@ -4,14 +4,14 @@ import { Section } from './Section'
 
 export function Projects() {
   return (
-    <Section id="projects" index="03" title="Selected projects">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {cv.projects.map((p, i) => (
+    <Section id="projects" index="03" title="Selected work">
+      <div className="grid gap-6 md:grid-cols-2">
+        {cv.work.map((p, i) => (
           <Reveal key={p.name} delay={i * 80}>
             <article className="flex h-full flex-col border border-line bg-surface transition-colors hover:border-muted">
               <div className="flex items-center justify-between border-b border-line px-5 py-3">
                 <span className="label">{p.context}</span>
-                <span className="font-mono text-xs text-muted">{p.year}</span>
+                <span className="font-mono text-xs text-muted">{p.period}</span>
               </div>
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="text-lg font-medium leading-snug">{p.name}</h3>

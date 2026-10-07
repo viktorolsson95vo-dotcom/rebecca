@@ -22,7 +22,7 @@ export function Hero() {
               </a>
             ) : (
               <a href="#projects" className="btn-ghost">
-                View projects
+                View my work
               </a>
             )}
           </div>

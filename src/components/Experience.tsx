@@ -23,14 +23,17 @@ export function Experience() {
               {r.company}
               {r.location && ` · ${r.location}`}
             </p>
-            <ul className="mt-4 space-y-2">
-              {r.points.map((pt) => (
-                <li key={pt} className="flex gap-3">
-                  <span className="mt-[0.7em] h-px w-3 shrink-0 bg-accent" aria-hidden />
-                  {pt}
-                </li>
-              ))}
-            </ul>
+            {r.via && <p className="mt-1 font-mono text-xs text-muted">Consultant via {r.via}</p>}
+            {r.points.length > 0 && (
+              <ul className="mt-4 space-y-2">
+                {r.points.map((pt) => (
+                  <li key={pt} className="flex gap-3">
+                    <span className="mt-[0.7em] h-px w-3 shrink-0 bg-accent" aria-hidden />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            )}
           </Row>
         ))}
       </div>
@@ -50,18 +53,22 @@ export function Experience() {
             ))}
           </ul>
         </Reveal>
-        {cv.certifications.length > 0 && (
-          <Reveal delay={100}>
-            <h3 className="label mb-5">Certifications</h3>
-            <ul className="space-y-3">
-              {cv.certifications.map((c) => (
-                <li key={c} className="font-medium">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        )}
+        <Reveal delay={100}>
+          <h3 className="label mb-5">Positions of trust</h3>
+          <ul className="space-y-5">
+            {cv.engagements.map((g) => (
+              <li key={g.org}>
+                <p className="font-medium">{g.role}</p>
+                <p className="text-muted">
+                  {g.org} · <span className="font-mono text-sm">{g.period}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="label mb-3 mt-10">Languages</h3>
+          <p>{cv.languages}</p>
+        </Reveal>
       </div>
     </Section>
   )
