@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, type ReactNode } from 'react'
 import { content, type CV, type Lang } from './data/cv'
 
 // Interface text (headings, buttons, labels). CV content lives in data/cv.ts.
@@ -47,34 +47,18 @@ const ui = {
   },
 } satisfies Record<Lang, unknown>
 
-type LangContext = { lang: Lang; setLang: (l: Lang) => void; cv: CV; t: (typeof ui)['en'] }
+// Each language is its own page: Swedish (primary) at /, English at /en.
+export const langPath: Record<Lang, string> = { sv: '/', en: '/en' }
+
+type LangContext = { lang: Lang; cv: CV; t: (typeof ui)['en'] }
 
 const Ctx = createContext<LangContext | null>(null)
 
-// English is the default; a choice made with the toggle is remembered.
-function initialLang(): Lang {
-  try {
-    const stored = localStorage.getItem('lang')
-    if (stored === 'en' || stored === 'sv') return stored
-  } catch {
-    // storage unavailable
-  }
-  return 'en'
-}
+// The page's <html lang> (set in index.html / en/index.html) decides the language.
+const lang: Lang = document.documentElement.lang === 'en' ? 'en' : 'sv'
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(initialLang)
-
-  useEffect(() => {
-    document.documentElement.lang = lang
-    try {
-      localStorage.setItem('lang', lang)
-    } catch {
-      // storage unavailable
-    }
-  }, [lang])
-
-  return <Ctx.Provider value={{ lang, setLang, cv: content[lang], t: ui[lang] }}>{children}</Ctx.Provider>
+  return <Ctx.Provider value={{ lang, cv: content[lang], t: ui[lang] }}>{children}</Ctx.Provider>
 }
 
 export function useLang() {

@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react'
-import { useLang } from '../i18n'
+import { langPath, useLang } from '../i18n'
 import type { Lang } from '../data/cv'
 
 const ids = ['about', 'expertise', 'projects', 'experience', 'contact'] as const
 
 function LangToggle() {
-  const { lang, setLang, t } = useLang()
-  const options: Lang[] = ['en', 'sv']
+  const { lang, t } = useLang()
+  const options: Lang[] = ['sv', 'en']
   return (
     <div role="group" aria-label={t.language} className="ml-2 flex border border-line font-mono text-xs">
       {options.map((l) => (
-        <button
+        <a
           key={l}
-          type="button"
+          href={langPath[l]}
+          hrefLang={l}
           lang={l}
-          aria-pressed={lang === l}
-          onClick={() => setLang(l)}
+          aria-current={lang === l ? 'page' : undefined}
+          // Keep the visitor on the same section when switching language
+          onClick={(e) => {
+            e.preventDefault()
+            if (lang !== l) window.location.href = langPath[l] + window.location.hash
+          }}
           className={`px-2 py-1 uppercase transition-colors ${lang === l ? 'bg-ink text-paper' : 'text-muted hover:text-ink'}`}
         >
           {l}
-        </button>
+        </a>
       ))}
     </div>
   )
