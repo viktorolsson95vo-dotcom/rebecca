@@ -1,10 +1,11 @@
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
 export function Expertise() {
+  const { cv, t } = useLang()
   return (
-    <Section id="expertise" index="02" title="Expertise">
+    <Section id="expertise" index="02" title={t.sections.expertise}>
       <div className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {cv.expertise.map((g, i) => (
           <Reveal key={g.title} delay={i * 80} className="bg-paper p-6">

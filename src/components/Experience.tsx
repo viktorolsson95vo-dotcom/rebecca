@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
@@ -13,8 +13,9 @@ function Row({ aside, children }: { aside: string; children: ReactNode }) {
 }
 
 export function Experience() {
+  const { cv, t } = useLang()
   return (
-    <Section id="experience" index="04" title="Experience">
+    <Section id="experience" index="04" title={t.sections.experience}>
       <div>
         {cv.experience.map((r) => (
           <Row key={r.company + r.period} aside={r.period}>
@@ -23,7 +24,7 @@ export function Experience() {
               {r.company}
               {r.location && ` · ${r.location}`}
             </p>
-            {r.via && <p className="mt-1 font-mono text-xs text-muted">Consultant via {r.via}</p>}
+            {r.via && <p className="mt-1 font-mono text-xs text-muted">{t.consultantVia} {r.via}</p>}
             {r.points.length > 0 && (
               <ul className="mt-4 space-y-2">
                 {r.points.map((pt) => (
@@ -40,7 +41,7 @@ export function Experience() {
 
       <div className="mt-20 grid gap-12 md:grid-cols-2">
         <Reveal>
-          <h3 className="label mb-5">Education</h3>
+          <h3 className="label mb-5">{t.education}</h3>
           <ul className="space-y-5">
             {cv.education.map((e) => (
               <li key={e.degree}>
@@ -54,7 +55,7 @@ export function Experience() {
           </ul>
         </Reveal>
         <Reveal delay={100}>
-          <h3 className="label mb-5">Positions of trust</h3>
+          <h3 className="label mb-5">{t.engagements}</h3>
           <ul className="space-y-5">
             {cv.engagements.map((g) => (
               <li key={g.org}>
@@ -66,7 +67,7 @@ export function Experience() {
             ))}
           </ul>
 
-          <h3 className="label mb-3 mt-10">Languages</h3>
+          <h3 className="label mb-3 mt-10">{t.languages}</h3>
           <p>{cv.languages}</p>
         </Reveal>
       </div>

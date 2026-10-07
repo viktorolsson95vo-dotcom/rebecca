@@ -1,15 +1,32 @@
 import { useEffect, useState } from 'react'
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
+import type { Lang } from '../data/cv'
 
-const links = [
-  { id: 'about', label: 'About' },
-  { id: 'expertise', label: 'Expertise' },
-  { id: 'projects', label: 'Work' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact' },
-]
+const ids = ['about', 'expertise', 'projects', 'experience', 'contact'] as const
+
+function LangToggle() {
+  const { lang, setLang, t } = useLang()
+  const options: Lang[] = ['en', 'sv']
+  return (
+    <div role="group" aria-label={t.language} className="ml-2 flex border border-line font-mono text-xs">
+      {options.map((l) => (
+        <button
+          key={l}
+          type="button"
+          lang={l}
+          aria-pressed={lang === l}
+          onClick={() => setLang(l)}
+          className={`px-2 py-1 uppercase transition-colors ${lang === l ? 'bg-ink text-paper' : 'text-muted hover:text-ink'}`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  )
+}
 
 export function Nav() {
+  const { cv, t } = useLang()
   const [active, setActive] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
 
@@ -19,7 +36,7 @@ export function Nav() {
       // Active = the last section whose top has passed 40% of the viewport
       const line = window.innerHeight * 0.4
       let current: string | null = null
-      for (const { id } of links) {
+      for (const id of ids) {
         const el = document.getElementById(id)
         if (el && el.getBoundingClientRect().top <= line) current = id
       }
@@ -40,19 +57,22 @@ export function Nav() {
         <a href="#top" className="text-sm font-medium tracking-tight">
           {cv.name}
         </a>
-        <ul className="flex items-center gap-1">
-          {links.map((l) => (
-            <li key={l.id} className={l.id === 'contact' ? '' : 'hidden md:block'}>
-              <a
-                href={`#${l.id}`}
-                aria-current={active === l.id ? 'true' : undefined}
-                className={`px-3 py-2 text-sm transition-colors ${active === l.id ? 'text-accent' : 'text-muted hover:text-ink'}`}
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center">
+          <ul className="flex items-center gap-1">
+            {ids.map((id) => (
+              <li key={id} className={id === 'contact' ? '' : 'hidden md:block'}>
+                <a
+                  href={`#${id}`}
+                  aria-current={active === id ? 'true' : undefined}
+                  className={`px-3 py-2 text-sm transition-colors ${active === id ? 'text-accent' : 'text-muted hover:text-ink'}`}
+                >
+                  {t.nav[id]}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <LangToggle />
+        </div>
       </nav>
     </header>
   )

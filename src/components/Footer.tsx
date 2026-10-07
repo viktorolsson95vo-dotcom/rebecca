@@ -1,6 +1,7 @@
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 
 export function Footer() {
+  const { cv, t } = useLang()
   const year = new Date().getFullYear()
   const initials = cv.name
     .split(' ')
@@ -15,7 +16,7 @@ export function Footer() {
           © {year} {cv.name}
         </p>
         <p>
-          Drawn by {initials} · Rev. {year} · Scale 1:1
+          {t.drawnBy} {initials} · Rev. {year} · {t.scale} 1:1
         </p>
       </div>
     </footer>

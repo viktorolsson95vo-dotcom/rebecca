@@ -1,10 +1,11 @@
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
 export function About() {
+  const { cv, t } = useLang()
   return (
-    <Section id="about" index="01" title="About">
+    <Section id="about" index="01" title={t.sections.about}>
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
         <Reveal className="space-y-5 text-lg leading-relaxed">
           {cv.about.map((p, i) => (
@@ -26,7 +27,7 @@ export function About() {
                 )}
                 <img
                   src={cv.photo}
-                  alt={`Portrait of ${cv.name}`}
+                  alt={`${t.portraitOf} ${cv.name}`}
                   width={640}
                   height={800}
                   loading="lazy"

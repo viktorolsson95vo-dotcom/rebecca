@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
 export function Contact() {
+  const { cv, t } = useLang()
   const [copied, setCopied] = useState(false)
 
   async function copyEmail() {
@@ -17,11 +18,11 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" index="05" title="Contact">
+    <Section id="contact" index="05" title={t.sections.contact}>
       <Reveal className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
         <div>
           <p className="max-w-lg text-lg text-muted">
-            Interested in working together, or have a question about a project? Get in touch.
+            {t.contactBlurb}
           </p>
           <a
             href={`mailto:${cv.contact.email}`}
@@ -31,7 +32,7 @@ export function Contact() {
           </a>
           <div className="no-print mt-8">
             <button type="button" onClick={copyEmail} className="btn-ghost" aria-live="polite">
-              {copied ? 'Copied' : 'Copy email'}
+              {copied ? t.copied : t.copyEmail}
             </button>
           </div>
         </div>
@@ -47,7 +48,7 @@ export function Contact() {
           {cv.contact.cvPdf && (
             <li>
               <a href={cv.contact.cvPdf} download className="link">
-                Download CV (PDF)
+                {t.downloadCvPdf}
               </a>
             </li>
           )}

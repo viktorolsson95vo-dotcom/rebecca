@@ -6,15 +6,17 @@ import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
 import { Projects } from './components/Projects'
+import { useLang } from './i18n'
 
 export default function App() {
+  const { t } = useLang()
   return (
     <>
       <a
         href="#about"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
       >
-        Skip to content
+        {t.skip}
       </a>
       <Nav />
       <main>

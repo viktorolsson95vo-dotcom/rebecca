@@ -1,7 +1,8 @@
-import { cv } from '../data/cv'
+import { useLang } from '../i18n'
 import { Drawing } from './Drawing'
 
 export function Hero() {
+  const { cv, t } = useLang()
   return (
     <section id="top" className="grid-paper relative border-b border-line px-5 pb-20 pt-32 sm:px-8 sm:pb-28 sm:pt-40">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.15fr_1fr]">
@@ -14,15 +15,15 @@ export function Hero() {
 
           <div className="no-print mt-10 flex flex-wrap items-center gap-3">
             <a href="#contact" className="btn-primary">
-              Get in touch
+              {t.getInTouch}
             </a>
             {cv.contact.cvPdf ? (
               <a href={cv.contact.cvPdf} download className="btn-ghost">
-                Download CV
+                {t.downloadCv}
               </a>
             ) : (
               <a href="#projects" className="btn-ghost">
-                View my work
+                {t.viewWork}
               </a>
             )}
           </div>
@@ -30,7 +31,7 @@ export function Hero() {
           {cv.available && (
             <p className="mt-10 flex items-center gap-2.5 text-sm text-muted">
               <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-              Open to new opportunities
+              {t.openToWork}
             </p>
           )}
         </div>
