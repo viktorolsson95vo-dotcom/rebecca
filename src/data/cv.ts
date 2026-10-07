@@ -144,7 +144,11 @@ const en = {
       via: 'Sigma Industry South',
       period: '2026 — Present',
       location: 'Lund',
-      points: [],
+      points: [
+        'Designs filling machines in Creo.',
+        'Design work and modifications, including the associated drawings.',
+        'Testing, and contact with suppliers.',
+      ],
     },
     {
       title: 'Mechanical Engineer',
@@ -306,7 +310,11 @@ const sv: CV = {
       via: 'Sigma Industry South',
       period: '2026 — Nuvarande',
       location: 'Lund',
-      points: [],
+      points: [
+        'Konstruerar fyllmaskiner i Creo.',
+        'Design och modifieringar, inklusive tillhörande ritningar.',
+        'Testning samt kontakt med leverantörer.',
+      ],
     },
     {
       title: 'Maskiningenjör',
