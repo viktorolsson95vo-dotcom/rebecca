@@ -41,7 +41,7 @@ export const cv = {
     'Ambitious and driven, with a strong interest in technology and mechanical design. I know how a product goes from prototype to finished product, and how to adapt it to the user’s needs and wishes. My goal is to keep developing my interest in design and to use my knowledge of product development, CAD and mechanical engineering to help solve problems.',
     'I’m a happy and curious person who doesn’t give up easily. I work well both independently and in a team, and can take the lead when needed. Combining design and engineering — finding solutions that work while keeping design in focus — is something I also do in my spare time, drawing and 3D-printing things for home. Outside work I do strength training and kickboxing, where I’m also a coach.',
   ],
-  photo: null as string | null, // e.g. '/rebecca.jpg' — put the file in /public
+  photo: '/rebecca.jpg' as string | null, // file lives in /public; set to null to hide
 
   // Shown as a drawing-style "title block"
   facts: [
