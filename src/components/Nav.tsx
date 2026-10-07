@@ -4,7 +4,7 @@ import type { Lang } from '../data/cv'
 
 const ids = ['about', 'expertise', 'projects', 'experience', 'contact'] as const
 
-function LangToggle() {
+function LangToggle({ section }: { section: string | null }) {
   const { lang, t } = useLang()
   const options: Lang[] = ['sv', 'en']
   return (
@@ -16,10 +16,10 @@ function LangToggle() {
           hrefLang={l}
           lang={l}
           aria-current={lang === l ? 'page' : undefined}
-          // Keep the visitor on the same section when switching language
+          // Keep the visitor on the same section when switching language (the hash is removed again on load)
           onClick={(e) => {
             e.preventDefault()
-            if (lang !== l) window.location.href = langPath[l] + window.location.hash
+            if (lang !== l) window.location.href = langPath[l] + (section ? `#${section}` : '')
           }}
           className={`px-2 py-1 uppercase transition-colors ${lang === l ? 'bg-ink text-paper' : 'text-muted hover:text-ink'}`}
         >
@@ -76,7 +76,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <LangToggle />
+          <LangToggle section={active} />
         </div>
       </nav>
     </header>

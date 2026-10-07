@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { setupCleanAnchors } from './anchors'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Experience } from './components/Experience'
@@ -10,6 +12,7 @@ import { useLang } from './i18n'
 
 export default function App() {
   const { t } = useLang()
+  useEffect(setupCleanAnchors, [])
   return (
     <>
       <a
