@@ -2,7 +2,7 @@
 import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App'
-import { content, type Lang } from './data/cv'
+import { builtBy, content, type Lang } from './data/cv'
 import { LangProvider, langPath } from './i18n'
 
 export const SITE = 'https://www.lesenius.se'
@@ -34,6 +34,7 @@ export function jsonLd(lang: Lang, dateModified: string) {
         name: cv.name,
         inLanguage: langs,
         publisher: { '@id': personId },
+        creator: { '@type': 'Organization', name: builtBy.name, url: builtBy.url },
       },
       {
         '@type': 'ProfilePage',
@@ -112,6 +113,8 @@ export function llmsTxt() {
     '',
     '## Languages',
     `- ${cv.languages}`,
+    '',
+    `Website built and maintained by ${builtBy.name} (${builtBy.url}).`,
     '',
   ]
   return lines.join('\n')

@@ -25,6 +25,7 @@ const ui = {
     downloadCvPdf: 'Download CV (PDF)',
     drawnBy: 'Drawn by',
     scale: 'Scale',
+    builtBy: 'Website built & maintained by',
   },
   sv: {
     skip: 'Hoppa till innehållet',
@@ -48,6 +49,7 @@ const ui = {
     downloadCvPdf: 'Ladda ner CV (PDF)',
     drawnBy: 'Ritad av',
     scale: 'Skala',
+    builtBy: 'Webbplats byggd & underhållen av',
   },
 } satisfies Record<Lang, unknown>
 

@@ -31,6 +31,9 @@ export type Engagement = { role: string; org: string; period: string }
 
 export type Link = { label: string; href: string }
 
+// Who built the site — credited in the footer and in the structured data
+export const builtBy = { name: 'Northstar Solutions', url: 'https://www.northstarsolutions.se' }
+
 // Same in both languages
 const shared = {
   name: 'Rebecca Lesenius',

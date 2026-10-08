@@ -1,3 +1,4 @@
+import { builtBy } from '../data/cv'
 import { useLang } from '../i18n'
 
 export function Footer() {
@@ -17,6 +18,22 @@ export function Footer() {
         </p>
         <p suppressHydrationWarning>
           {t.drawnBy} {initials} · Rev. {year} · {t.scale} 1:1
+        </p>
+      </div>
+
+      <div className="mx-auto mt-6 max-w-6xl border-t border-line pt-4 font-mono text-xs uppercase tracking-wider text-muted">
+        <p>
+          {t.builtBy}{' '}
+          {/* Plain followed link (no nofollow/noreferrer) so it counts as a backlink and shows up as a referral */}
+          <a
+            href={builtBy.url}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex min-h-8 items-center gap-1 text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            {builtBy.name}
+            <span aria-hidden>↗</span>
+          </a>
         </p>
       </div>
     </footer>
